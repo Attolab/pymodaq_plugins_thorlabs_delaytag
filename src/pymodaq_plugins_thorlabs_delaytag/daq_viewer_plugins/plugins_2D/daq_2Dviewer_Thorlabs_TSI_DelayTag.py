@@ -4,23 +4,17 @@ from pymodaq.control_modules.viewer_utility_classes import DAQ_Viewer_base, como
 from pymodaq.utils.parameter import Parameter
 
 from pylablib.devices import Thorlabs
+
+from pymodaq_plugins_thorlabs.daq_viewer_plugins.plugins_2D.daq_2Dviewer_Thorlabs_TSI import DAQ_2DViewer_Thorlabs_TSI
+
 from qtpy import QtWidgets, QtCore
 import numpy as np
 from time import perf_counter
 
 
-class DAQ_2DViewer_Thorlabs_TSI(DAQ_Viewer_base):
+class DAQ_2DViewer_Thorlabs_TSI_DelayTag(DAQ_2DViewer_Thorlabs_TSI):
     """
-    Plugin for Thorlabs scientific sCMOS cameras such as Kiralux or Zelux. It has been tested with Thorlabs Zelux camera on Windows.
-    Building on pylablib driver, information about it can be found here : https://pylablib.readthedocs.io/en/stable/devices/Thorlabs_TLCamera.html
-
-    As in pylablib, the plugin will look for DLLs in the default Thorcam installation folder. Specifying a custom DLL folder is not implemented yet.
-
-    The plugin provides binning functionality as well as ROI (region of interest) selection, which are on handled the hardware side.
-    To use ROIs, click on "Show/Hide ROI selection area" in the viewer panel (icon with dashed rectangle).
-    Position the rectangle as you wish, either with mouse or by entering coordinates, then click "Update ROI" button.
-
-    The "Clear ROI+Bin" button resets to default cameras parameters: no binning and full frame.
+    Little modification to use thorlabs camera as delay tagging
     """
 
     serialnumbers = Thorlabs.list_cameras_tlcam()
